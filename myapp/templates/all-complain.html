@@ -1,0 +1,51 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+
+<br><br><br><hr>
+<form action="{% url 'all-complain' %}" method="POST">
+    {% csrf_token %}
+    <select name="status" id="">
+        <option value="">---</option>
+        <option value="all">All Complain</option>
+        <option value="open">Unsolve Complains</option>
+        <option value="solved">Solved Complains</option>
+    </select>
+    <input type="submit" name="" value="Search" id="">
+</form>
+<br><hr>
+
+
+
+{% for complain in complains %}
+
+<div class="col-md-4">
+    <div class="card card-profile">
+      <div class="card-avatar">
+        <a href="javascript:;">
+            {% if complain.comp_pic %}
+          <img class="img" src="" />
+          {% endif %}
+        </a>
+        
+      </div>
+     
+      
+      <div class="card-body">
+        <h6 class="card-category text-gray">Complain By : {{complain.member.fname}}  {{complain.member.lname}}</h6>
+        <h4 class="card-title">Complain Subject : {{complain.subject}} </h4>
+        <p class="card-description">
+          Discription : {{complain.des}}
+        </p>
+        <p>Complain Type : {{complain.comp_type}}</p>
+        <p>Posted At : {{complain.posted_at}}</p>
+        <p>Complain status : {{complain.status}}</p>
+      </div>
+    </div>
+    <a href="{% url 'complain-solve' complain.id %}"><button class="btn btn-primary">Complain Resolved</button></a>
+  </div>
+  <br><br><br>
+  {% endfor %}
+
+
+{% endblock %}

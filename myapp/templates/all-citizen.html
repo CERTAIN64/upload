@@ -1,0 +1,41 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+          {% for citizen in citizens %}
+        <div class="col-md-4">
+          <div class="card card-profile">
+            <div class="card-avatar">
+              <a href="javascript:;">
+                {% if citizen.pic %}
+                <img class="img" src="{{citizen.pic.url}}" />
+                {% endif %}
+              </a>
+              
+            </div>
+           
+            
+            <div class="card-body">
+              <h6 class="card-category text-gray">{{citizen.email}}</h6>
+              <h4 class="card-title">{{citizen.fname}}  {{citizen.lname}}</h4>
+              <p class="card-description">
+                Mobile : {{citizen.mobile}}
+              </p>
+              <p>Address : {{citizen.address}}</p>
+              <label for="">Change to : </label>
+              {% if citizen.role == 'visitor' %}
+              <a href="{% url 'change-status' citizen.id %}"><button class="btn btn-primary">Citizen</button></a>
+              {% else %}
+              <a href="{% url 'change-status' citizen.id %}"><button class="btn btn-primary">Visitor</button></a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

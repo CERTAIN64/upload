@@ -1,0 +1,44 @@
+{% extends 'citizen-header.html' %}
+{% load static %}
+{% block content %}
+
+<div class="price">
+    <div class="container">
+        <div class="section-header">
+            <p></p>
+            <h2>My FIR </h2>
+        </div>
+        <div class="row">
+            {% for fir in firs %}
+            {% if fir.citizen.email == request.session.cemail %}
+            <div class="col-md-4">
+                <div class="price-item">
+                    {% if fir.fir_pic %}
+                    <div class="price-header">
+                        <img src="{{fir.fir_pic.url}}" alt="" width="200px" height="200px">
+                    </div>
+                    {% endif %}
+                    <div class="price-body">
+                        <div class="price-des">
+                            <ul>
+                                <li>FIR Title: {{fir.title}}</li>
+                                <li>FIR Des : {{fir.des}}</li>
+                                <li>FIR Type : {{fir.fir_type}}</li>
+                                <li>FIR_AT : {{fir.fir_at}}</li>
+                                <li>FIR Status : {{fir.status}}</li>
+                                <li><a href="{%url 'edit-fir' fir.id %}"><button class="btn btn-primary">Edit FIR</button></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+            
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

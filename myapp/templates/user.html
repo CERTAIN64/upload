@@ -1,0 +1,86 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+      <!-- End Navbar -->
+      <div class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-8">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title">Edit Profile</h4>
+                  <p class="card-category">Complete your profile</p>
+                </div>
+                <div class="card-body">
+                  <form action="{% url 'profile' %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">First Name</label>
+                          <input type="text" name="fname" value="{{uid.fname}}" class="form-control">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Last Name</label>
+                          <input type="text" name="lname" value="{{uid.lname}}" class="form-control">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Address</label>
+                          <input type="text" name="address" value="{{uid.address}}" class="form-control">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Email : {{uid.email}}</label>
+                          
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Mobile</label>
+                          <input type="text" name="mobile" value="{{uid.mobile}}" class="form-control">
+                        </div>
+                      </div>
+                    </div>
+                    <label for="" class="bmd-label-floating">Change Image : </label>
+                    <input type="file" name="pic" value="{{uid.pic.url}}" id="">
+                    
+                    <button type="submit" class="btn btn-primary pull-right">Update Profile</button>
+                    <div class="clearfix"></div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card card-profile">
+                <div class="card-avatar">
+                  <a href="javascript:;">
+                    <img class="img" src="{{uid.pic.url}}" />
+                  </a>
+                  
+                </div>
+               
+                
+                <div class="card-body">
+                  <h6 class="card-category text-gray">{{uid.email}}</h6>
+                  <h4 class="card-title">{{uid.fname}}  {{uid.lname}}</h4>
+                  <p class="card-description">
+                    Mobile : {{uid.mobile}}
+                  </p>
+                  <p>Address : {{uid.address}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+{% endblock %}

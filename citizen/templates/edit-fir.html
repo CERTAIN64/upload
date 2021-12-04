@@ -1,0 +1,66 @@
+{% extends 'citizen-header.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="content">
+    <div class="container-fluid">
+        {{msg}}
+      <div class="row">
+          
+        <div class="col-md-8">
+          <div class="card">
+            <div class="card-header card-header-primary">
+              <h4 class="card-title">Edit Fir</h4>
+              <p class="card-category"></p>
+            </div>
+            <div class="card-body">
+              <form action="{% url 'edit-fir' fir.id %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">FIR Title</label>
+                      <input type="text" name="title" value="" class="form-control">
+                    </div>
+                  </div>
+                  
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">Discription</label>
+                      <textarea name="dis" id="" cols="30" class="form-control" rows="10">{{fir.dis}}</textarea>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  
+                <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Fir_at  </label>
+                      <input type="date" name="fir_at" value="{{edate}}" class="form-control">
+                    </div>
+                  </div>
+                </div>
+                
+                <label for="" class="bmd-label-floating">Fir Image : </label>
+                {% if fir.fir_pic %}
+                <input type="file" name="epic" value="{{fir.pic.url}}" id="">
+                <img src="{{fir.fir_pic.url}}" alt="" width="100px" height="100px">
+                {% else %}
+                <input type="file" name="epic"  id="">
+
+                {% endif %}
+                <button type="submit" class="btn btn-primary pull-right">Edit Fir</button>
+                <div class="clearfix"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

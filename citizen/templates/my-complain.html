@@ -1,0 +1,45 @@
+{% extends 'citizen-header.html' %}
+{% load static %}
+{% block content %}
+
+<div class="price">
+    <div class="container">
+        <div class="section-header">
+            <p></p>
+            <h2>My Complains </h2>
+        </div>
+        <div class="row">
+            {% for complain in complains %}
+            {% if complain.citizen.email == request.session.email %}
+            <div class="col-md-4">
+                <div class="price-item">
+                    {% if complain.comp_pic %}
+                    
+                    <div class="price-header">
+                        <img src="{{complain.comp_pic.url}}" alt="" width="200px" height="200px">
+                    </div>
+                    {% endif %}
+                    <div class="price-body">
+                        <div class="price-des">
+                            <ul>
+                                <li>Complain Subject: {{complain.subject}}</li>
+                                <li>Complain Des : {{complain.des}}</li>
+                                <li>Complain Type : {{complain.comp_type}}</li>
+                                <li>Posted At : {{complain.posted_at}}</li>
+                                <li>Complain Status : {{complain.status}}</li>
+                                <li><a href="{%url 'edit-complain' complain.id %}"><button class="btn btn-primary">Edit Complain</button></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+            
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

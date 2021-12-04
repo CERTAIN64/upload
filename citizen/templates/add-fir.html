@@ -1,0 +1,60 @@
+{% extends 'citizen-header.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="content">
+    <div class="container-fluid">
+        {{msg}}
+      <div class="row">
+          
+        <div class="col-md-8">
+          <div class="card">
+            <div class="card-header card-header-primary">
+              <h4 class="card-title">Add FIR</h4>
+              <p class="card-category"></p>
+            </div>
+            <div class="card-body">
+              <form action="{% url 'add-fir' %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">FIR Title</label>
+                      <input type="text" name="title"  class="form-control">
+                    </div>
+                  </div>
+                  
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">Description</label>
+                      <textarea name="des" id="" cols="30" class="form-control" rows="10"></textarea>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  
+                <div class="col-md-6">
+                    <div class="form-group">
+                      <label>FIR AT</label>
+                      <input type="date" name="fir_at" class="form-control">
+                    </div>
+                  </div>
+                </div>
+                <label for="" class="bmd-label-floating">FIR Image : </label>
+                <input type="file" name="epic"  id="">
+                
+                <button type="submit" class="btn btn-primary pull-right">Add FIR</button>
+                <div class="clearfix"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

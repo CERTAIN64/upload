@@ -1,0 +1,51 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+
+<br><br><br><hr>
+<form action="{% url 'all-fir' %}" method="POST">
+    {% csrf_token %}
+    <select name="status" id="">
+        <option value="">---</option>
+        <option value="all">All Fir</option>
+        <option value="open">Unsolve Fir</option>
+        <option value="solved">Solved Fir</option>
+    </select>
+    <input type="submit" name="" value="Search" id="">
+</form>
+<br><hr>
+
+
+
+{% for fir in firs %}
+
+<div class="col-md-4">
+    <div class="card card-profile">
+      <div class="card-avatar">
+        <a href="javascript:;">
+            {% if fir.fir_pic %}
+          <img class="img" src="{{fir.fir_pic.url}}" />
+          {% endif %}
+        </a>
+        
+      </div>
+     
+      
+      <div class="card-body">
+        <h6 class="card-category text-gray">FIR By : {{fir.citizen.fname}}  {{fir.citizen.lname}}</h6>
+        <h4 class="card-title">Fir Title : {{fir.title}} </h4>
+        <p class="card-description">
+          Discription : {{fir.des}}
+        </p>
+        <p>Complain Type : {{fir.fir_type}}</p>
+        <p>Posted At : {{fir.fir_at}}</p>
+        <p>Complain status : {{fir.status}}</p>
+      </div>
+    </div>
+    <a href="{% url 'fir-solve' fir.id %}"><button class="btn btn-primary">Fir Resolved</button></a>
+  </div>
+  <br><br><br>
+  {% endfor %}
+
+
+{% endblock %}
