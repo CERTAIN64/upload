@@ -176,6 +176,8 @@ def add_complain(request):
                 comp_type = request.POST['comp_type'],
                 comp_pic = request.FILES['comp_pic']
             )
+            msg = 'Complain ADDED'
+            return render(request,'add-complain.html',{'msg':msg})
         else:
             Complain.objects.create(
                 citizen = citizen,
@@ -183,17 +185,18 @@ def add_complain(request):
                 des = request.POST['des'],
                 comp_type = request.POST['comp_type'],
             )
+
             msg = 'Complain Added'
             return render(request,'add-complain.html',{'msg':msg})
     else:
         return render(request,'add-complain.html')
-
-
+        #pass
 
 def my_complain(request):
     complains = Complain.objects.all()
     citizen = Citizen.objects.get(email = request.session['email'])
     return render(request,'my-complain.html',{'complains':complains,'citizen':citizen})
+    
 
 def edit_complain(request,ck):
     complain = Complain.objects.get(id=ck)
@@ -207,7 +210,7 @@ def edit_complain(request,ck):
         complain.save()
         return redirect('my-complain')
     return render(request,'edit-complain.html',{'complain':complain,'comp_at':comp_at})
-
+    
 
 
 

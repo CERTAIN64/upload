@@ -1,61 +1,69 @@
 {% extends 'citizen-header.html' %}
 {% load static %}
-
 {% block content %}
 
 <div class="content">
     <div class="container-fluid">
-        {{msg}}
+        
       <div class="row">
           
         <div class="col-md-8">
           <div class="card">
+            
             <div class="card-header card-header-primary">
               <h4 class="card-title">Add Complain</h4>
               <p class="card-category"></p>
             </div>
             <div class="card-body">
-              <form action="{% url 'add-complain' %}" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                <div class="row">
-                  <div class="col-md-6">
+                <form role="form" action="{% url 'add-complain' %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
                     <div class="form-group">
-                      <label class="bmd-label-floating">Subject</label>
-                      <input type="text" name="subject"  class="form-control">
+                      <div class="input-group input-group-merge input-group-alternative mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                        </div>
+                        <input class="form-control" name="subject" placeholder="Complain Subject" type="text" required>
+                      </div>
                     </div>
-                  </div>
-                  
-                </div>
-                <div class="row">
-                  <div class="col-md-12">
+                    
                     <div class="form-group">
-                      <label class="bmd-label-floating">Description</label>
-                      <textarea name="des" id="" cols="30" class="form-control" rows="10"></textarea>
+                      <div class="input-group input-group-merge input-group-alternative mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                        </div>
+                        <textarea name="des" id="" cols="30" rows="10"></textarea>
+                      </div>
                     </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <label for="">Complain Type : </label>&nbsp;
+                    <div class="form-group">
+                      <div class="input-group input-group-merge input-group-alternative mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                        </div>
+                        <label for="">Complain Type : </label>&nbsp;
                         <select name="comp_type" id="">
                             <option value="">--</option>
-                            <option value="parking">Parking</option>
-                            <option value="lift">Lift</option>
-                            <option value="cleaness">Cleaness</option>
+                            <option value="parking">Matrimonial</option>
+                            <option value="lift">Commercial</option>
+                            <option value="cleaness">Corruption</option>
                         </select>
-                  
-                <div class="col-md-6">
-                    <div class="form-group">
-                      <label>FIR AT</label>
-                      <input type="date" name="comp_at" class="form-control">
+                      </div>
                     </div>
-                  </div>
-                </div>
-                <label for="" class="bmd-label-floating">Complain Image : </label>
-                <input type="file" name="comp_pic"  id="">
-                
-                <button type="submit" class="btn btn-primary pull-right">Add FIR</button>
-                <div class="clearfix"></div>
-              </form>
+                    <div class="form-group">
+                      <div class="input-group input-group-merge input-group-alternative mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                        </div>
+                        <label for="">Complain Picture : </label>
+                        <input class="form-control" name="comp_pic" placeholder="Complain Pic" type="file">
+                      </div>
+                    </div>
+                    
+
+                    <div class="text-center">
+                      <button type="submit" class="btn btn-primary mt-4">Add Complain</button>
+                    </div>
+                  </form>
+                  {{msg}}
             </div>
           </div>
         </div>
