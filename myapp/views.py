@@ -204,7 +204,7 @@ def all_complain(request):
 def complain_solve(request,bk):
     complain = cm.Complain.objects.get(id=bk)
     complain.status = 'solved'
-    complain.solve()
+    complain.save()
     return redirect('all-complain')
 
 def table(request):
