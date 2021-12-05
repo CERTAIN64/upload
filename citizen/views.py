@@ -152,6 +152,12 @@ def my_fir(request):
     citizen = Citizen.objects.get(email = request.session['email'])
     return render(request,'my-fir.html',{'firs':firs,'citizen':citizen}) 
 
+def delete_fir(request,pk):
+    fir = FIR.objects.get(id=pk)
+    fir.delete()
+    return redirect('my-fir')
+
+
 def edit_fir(request,pk):
     fir = FIR.objects.get(id=pk)
     edate = str(fir.fir_at)
@@ -196,6 +202,11 @@ def my_complain(request):
     complains = Complain.objects.all()
     citizen = Citizen.objects.get(email = request.session['email'])
     return render(request,'my-complain.html',{'complains':complains,'citizen':citizen})
+
+def delete_complain(request,ck):
+    complain = Complain.objects.get(id=ck)
+    complain.delete()
+    return redirect('my-complain') 
     
 
 def edit_complain(request,ck):

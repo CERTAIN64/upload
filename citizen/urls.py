@@ -13,7 +13,9 @@ urlpatterns = [
     path('add-fir/',views.add_fir,name='add-fir'),
     path('edit-fir/<int:pk>',views.edit_fir,name='edit-fir'),
     path('my-fir/',views.my_fir,name='my-fir'),
+    path('delete-fir/<int:pk>',views.delete_fir,name='delete-fir'),
     path('add-complain/',views.add_complain,name='add-complain'),
     path('my-complain/',views.my_complain,name='my-complain'),
     path('edit-complain/<int:ck>',views.edit_complain,name='edit-complain'),
+    path('delete-complain/<int:ck>',views.delete_complain,name='delete-complain')
 ]

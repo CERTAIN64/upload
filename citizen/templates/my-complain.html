@@ -27,7 +27,8 @@
                                 <li>Complain Type : {{complain.comp_type}}</li>
                                 <li>Posted At : {{complain.posted_at}}</li>
                                 <li>Complain Status : {{complain.status}}</li>
-                                <li><a href="{%url 'edit-complain' complain.id %}"><button class="btn btn-primary">Edit Complain</button></a></li>
+                                <li><a href="{%url 'edit-complain' complain.id %}"><button class="btn btn-primary">EDIT</button></a></li>
+                                <li><a href="{% url 'delete-complain' complain.id %}"><button class="btn btn-primary"> DELETE</button></a></li>
                             </ul>
                         </div>
                     </div>

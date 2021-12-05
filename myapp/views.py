@@ -187,6 +187,7 @@ def fir_solve(request,pk):
     fir.save()
     return redirect('all-fir')
 
+
 def all_complain(request):
     if request.method == 'POST':
         status = request.POST['status']
