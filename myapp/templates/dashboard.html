@@ -38,18 +38,18 @@ https://www.tooplate.com/view/2117-infinite-loop
                   <a class="nav-link tm-nav-link" href="#infinite">Home</a>
               </li>
               <li class="nav-item">
-                <button onclick="location.href='http://127.0.0.1:8000/all-fir/'">VIEW FIR</button>
+                <a href="{% url 'all-fir' %}"><button class="btn btn-primary">VIEW FIR</button></a>
               </li>
               <li class="nav-item">
-                <button onclick="location.href='http://127.0.0.1:8000/all-complain/'">VIEW Complains</button>
+                <a href="{% url 'all-complain' %}"><button class="btn btn-primary">VIEW COMPLAIN</button></a>
               </li>
               <li class="nav-item">
-                <button onclick="location.href='http://127.0.0.1:8000/profile/'">Profile</button>
+                <a href="{% url 'profile' %}"><button class="btn btn-primary">PROFILE</button></a>
               </li> 
               <li class="nav-item">
                 <a class="nav-link tm-nav-link" href="#contact">Contact</a>
-                <a class="nav-link tm-nav-link" href="{% url 'dashboard' %}">Dashboard</a>
-                <button onclick="location.href='http://127.0.0.1:8000/logout/'">Log Out</button>
+                <a href="{% url 'dashboard' %}"><button class="btn btn-primary">DASHBOARD</button></a>
+                <a href="{% url 'logout' %}"><button class="btn btn-primary">LOG OUT</button></a>
                 <div class="nav-item dropdown">
                   <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{commissioner.fname}} {{commissioner.lname}}</a>
               </div>

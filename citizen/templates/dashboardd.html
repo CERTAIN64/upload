@@ -38,18 +38,18 @@ https://www.tooplate.com/view/2117-infinite-loop
                   <a class="nav-link tm-nav-link" href="#infinite">Home</a>
               </li>
               <li class="nav-item">
-                <button onclick="location.href='http://127.0.0.1:8000/citizen/add-fir/'">ADD FIR</button>
+                <a href="{% url 'add-fir' %}"><button class="btn btn-primary">ADD FIR</button></a>
               </li>
               <li class="nav-item">
-                <button onclick="location.href='http://127.0.0.1:8000/citizen/add-complain/'">Add Complains</button>
+                <a href="{% url 'add-complain' %}"><button class="btn btn-primary">ADD COMPLAIN</button></a>
               </li>
               <li class="nav-item">
-                <button onclick="location.href='http://127.0.0.1:8000/citizen/citizen-profile/'">Profile</button>
+                <a href="{% url 'citizen-profile' %}"><button class="btn btn-primary">PROFILE</button></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link tm-nav-link" href="#contact">Contact</a>
-                <a class="nav-link tm-nav-link" href="{% url 'dashboardd' %}">Dashboardd</a>
-                <button onclick="location.href='http://127.0.0.1:8000/citizen/citizen-logout/'">Log Out</button>
+                <a class="nav-link tm-nav-link" href="#contact"></a>
+                <a href="{% url 'dashboardd' %}"><button class="btn btn-primary">DASHBOARD</button></a>
+                <a href="{% url 'citizen-logout' %}"><button class="btn btn-primary">LOG OUT</button></a>
               </li>                    
             </ul>
           </div>        

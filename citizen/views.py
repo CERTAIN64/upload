@@ -23,7 +23,7 @@ def citizen_profile(request):
         uid.fname = request.POST['fname']
         uid.lname = request.POST['lname']
         uid.mobile = request.POST['mobile']
-        uid.address = request.POST['address']
+        uid.address = request.POST['address']   
 
         if request.FILES:
             uid.pic = request.FILES['pic']
@@ -123,6 +123,55 @@ def citizen_login(request):
 def citizen_logout(request):
     del request.session['email']
     return render(request,'citizen-login.html')
+
+def forgott1(request):
+    if request.method == 'POST':
+        try:
+            Citizen.objects.get(email=request.POST['email'])
+            otp = randrange(1000,9999)
+            subject = 'Welcome to App'
+            message = f"Hello {request.POST['email']}!! Your OTP is {otp}"
+            email_from = settings.EMAIL_HOST_USER
+            recipient_list = [request.POST['email'] ]
+            send_mail( subject, message, email_from, recipient_list )
+
+            return render(request,'forgott2.html',{'otp':otp,'email':request.POST['email']})
+        
+        except:
+            msg = 'Register First'
+            return render(request,'citizen-register.html',{'msg':msg})
+    else:
+        return render(request,'forgott1.html')
+
+def forgott2(request):
+    if request.method == 'POST':
+        email = request.POST['email']
+        otp = request.POST['otp']
+        uotp = request.POST['uotp']
+
+        if otp == uotp:
+            return render(request,'forgott3.html',{'email':email})
+        else:
+            msg = 'OTP Does Not Matched'
+            return render(request,'forgott2.html',{'msg':msg,'email':email,'otp':otp})
+    else:
+        return render(request,'forgott2.html')
+
+def forgott3(request):
+    if request.method == 'POST':
+        email = request.POST['email']
+        if request.POST['password'] == request.POST['cpassword']:
+            citizen = Citizen.objects.get(email=email)
+            citizen.password = request.POST['password']
+            citizen.save()
+            msg = 'Password Updated Successfully'
+            return render(request,'citizen-login.html',{'msg':msg,'email':email})
+        
+        else:
+            msg = 'Password And Confirm Password Does Not Matched'
+            return render(request,'forgott3.html',{'msg':msg,'email':email})
+    else:
+        return render(request,'forgott3.html')
 
 def add_fir(request):
     citizen = Citizen.objects.get(email = request.session['email'])

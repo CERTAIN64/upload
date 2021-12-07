@@ -38,10 +38,10 @@ https://www.tooplate.com/view/2117-infinite-loop
                   <a class="nav-link tm-nav-link" href="#infinite"></a>
               </li>
               <li class="nav-item">
-                <button onclick="location.href='http://127.0.0.1:8000/register/'">SIGN UP</button>
+                <a href="{% url 'register' %}"><button class="btn btn-primary">SIGN UP</button></a>
               </li>
               <li class="nav-item">
-                <button onclick="location.href='http://127.0.0.1:8000/login/'">LOG IN</button>
+                <a href="{% url 'login' %}"><button class="btn btn-primary">LOG IN</button></a>
               </li>
               <li class="nav-item">
                   <a class="nav-link tm-nav-link" href="#whatwedo"></a>

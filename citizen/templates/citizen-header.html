@@ -64,9 +64,9 @@
 
                                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                                     <div class="navbar-nav ml-auto">
-                                        <button onclick="location.href='http://127.0.0.1:8000/citizen/dashboardd'">HOME</button>
-                                        <a href="sec/" class="nav-item nav-link">About</a>
-                                        {% if member.role == 'member' %}
+                                        <a href="{% url 'dashboardd' %}"><button class="btn btn-primary">Dashboard</button></a>
+                                        <a href="" class="nav-item nav-link"></a>
+                                        {% if citizen.role == 'citizen' %}
                                         <a href="{% url 'show-event' %}" class="nav-item nav-link">Events</a>
                                         <div class="nav-item dropdown">
                                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">My Complains</a>
@@ -83,14 +83,15 @@
                                             </div>
                                         </div>
                                         {% endif %}
-                                        {% if request.session.memail %}
-                                        <a href="{% url 'get-service' %}" class="nav-item nav-link">Get Service</a>
+                                        {% if request.session.email %}
+                                        <a href="{% url 'citizen-logout' %}" class="nav-item nav-link">LOG OUT</a>
 
                                         <div class="nav-item dropdown">
-                                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{member.fname}} {{member.lname}}</a>
+                                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{citizen.fname}} {{citizen.lname}}</a>
                                             <div class="dropdown-menu">
-                                                <a href="#" class="dropdown-item">Sub Item 1</a>
-                                                <a href="{% url 'member-logout' %}" class="dropdown-item">Logout</a>
+                                                <a href="{% url 'citizen-profile' %}" class="dropdown-item">Profile</a>
+                                                <a href="{% url 'my-fir' %}" class="dropdown-item">MY FIR</a>
+                                                <a href="{% url 'my-complain' %}" class="dropdown-item">MY COMPLAIN</a>
                                             </div>
                                         </div>
                                         {% else %}
